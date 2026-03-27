@@ -6,38 +6,102 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    service: 'Agricultural exports',
+    message: '',
   })
+  const [status, setStatus] = useState<'idle' | 'sent'>('idle')
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    alert('Thank you for your message! We will get back to you soon.')
-    setFormData({ name: '', email: '', message: '' })
+
+    const subject = encodeURIComponent(`New ${formData.service} inquiry from ${formData.name}`)
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
+    )
+
+    window.location.href = `mailto:info@olanrewajutrading.com?subject=${subject}&body=${body}`
+    setStatus('sent')
+    setFormData({ name: '', email: '', service: 'Agricultural exports', message: '' })
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
-          <p className="text-xl text-gray-600">Get in touch with our team for all your trading needs</p>
-        </div>
+    <div className="section-space">
+      <div className="shell space-y-12">
+        <section className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-start">
+          <div>
+            <span className="eyebrow">Contact and inquiries</span>
+            <h1 className="section-title mt-6">Let’s turn your next opportunity into a cleaner, better-structured commercial move.</h1>
+            <p className="mt-6 max-w-2xl text-base leading-8">
+              Reach out for export planning, industrial sourcing, or market-facing brand work. We respond quickly and keep conversations clear from the start.
+            </p>
+          </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a Message</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="panel p-5">
+              <p className="text-sm uppercase tracking-[0.18em] text-[var(--accent-strong)]">Email</p>
+              <a href="mailto:info@olanrewajutrading.com" className="mt-3 block text-sm leading-7 text-[var(--ink)]">
+                info@olanrewajutrading.com
+              </a>
+            </div>
+            <div className="panel p-5">
+              <p className="text-sm uppercase tracking-[0.18em] text-[var(--accent-strong)]">Phone</p>
+              <a href="tel:+2341234567890" className="mt-3 block text-sm leading-7 text-[var(--ink)]">
+                +234 123 456 7890
+              </a>
+            </div>
+            <div className="panel p-5">
+              <p className="text-sm uppercase tracking-[0.18em] text-[var(--accent-strong)]">Hours</p>
+              <p className="mt-3 text-sm leading-7 text-[var(--ink)]">Mon - Fri, 9:00 AM to 6:00 PM</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="overflow-hidden rounded-[2rem] bg-[linear-gradient(135deg,#16362c_0%,#245d4a_52%,#1d4338_100%)] p-8 text-white shadow-[0_24px_60px_rgba(19,33,28,0.24)] sm:p-10">
+            <p className="text-sm uppercase tracking-[0.24em] text-white/70">Direct access</p>
+            <h2 className="mt-5 text-4xl text-white">A conversation that starts with clarity.</h2>
+            <p className="mt-5 text-base leading-8 text-white/76">
+              We prefer a straightforward exchange: what you need, what market pressure you are dealing with, and what a successful outcome would look like.
+            </p>
+
+            <div className="mt-8 space-y-4 text-sm leading-7 text-white/76">
+              <p>Lagos, Nigeria</p>
+              <p>Export support, supplier coordination, and brand promotion planning.</p>
+              <p>We typically respond within one business day for serious commercial inquiries.</p>
+            </div>
+          </div>
+
+          <div className="panel p-8 sm:p-10">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <p className="text-sm uppercase tracking-[0.22em] text-[var(--accent-strong)]">Inquiry form</p>
+                <h2 className="mt-3 text-4xl">Tell us what you need.</h2>
+              </div>
+              <p className="max-w-sm text-sm leading-7">
+                Submitting this form opens your email client with the details pre-filled.
+              </p>
+            </div>
+
+            {status === 'sent' && (
+              <div className="mt-6 rounded-[1.25rem] border border-[rgba(27,106,85,0.18)] bg-[rgba(27,106,85,0.08)] px-4 py-3 text-sm text-[var(--ink)]">
+                Your message draft was prepared. If your email client did not open, contact us directly at{' '}
+                <a href="mailto:info@olanrewajutrading.com" className="font-semibold">
+                  info@olanrewajutrading.com
+                </a>
+                .
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+              <div>
+                <label htmlFor="name" className="mb-2 block text-sm font-medium text-[var(--ink)]">
                   Full Name
                 </label>
                 <input
@@ -47,12 +111,12 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="field"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-[var(--ink)]">
                   Email Address
                 </label>
                 <input
@@ -62,12 +126,29 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="field"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="service" className="mb-2 block text-sm font-medium text-[var(--ink)]">
+                  Service Needed
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  className="field"
+                >
+                  <option>Agricultural exports</option>
+                  <option>Brand promotion</option>
+                  <option>Industrial sourcing</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="message" className="mb-2 block text-sm font-medium text-[var(--ink)]">
                   Message
                 </label>
                 <textarea
@@ -77,66 +158,16 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                ></textarea>
+                  className="field resize-none"
+                />
               </div>
 
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
-              >
-                Send Message
+              <button type="submit" className="button-primary w-full">
+                Prepare My Inquiry
               </button>
             </form>
           </div>
-
-          {/* Contact Information */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h2>
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <svg className="w-6 h-6 text-blue-600 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <div>
-                  <h3 className="font-medium text-gray-900">Address</h3>
-                  <p className="text-gray-600">123 Business District<br />Lagos, Nigeria</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <svg className="w-6 h-6 text-blue-600 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                </svg>
-                <div>
-                  <h3 className="font-medium text-gray-900">Phone</h3>
-                  <p className="text-gray-600">+234 123 456 7890</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <svg className="w-6 h-6 text-blue-600 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <div>
-                  <h3 className="font-medium text-gray-900">Email</h3>
-                  <p className="text-gray-600">info@olanrewajutrading.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <svg className="w-6 h-6 text-blue-600 mt-1 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <div>
-                  <h3 className="font-medium text-gray-900">Business Hours</h3>
-                  <p className="text-gray-600">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat: 9:00 AM - 2:00 PM</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </div>
   )

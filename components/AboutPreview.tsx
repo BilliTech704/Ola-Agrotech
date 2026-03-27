@@ -1,49 +1,79 @@
 import Link from 'next/link'
 
 export default function AboutPreview() {
+  const principles = [
+    'A sharper route from supplier conversations to market-ready delivery.',
+    'Executive-style communication for buyers, partners, and internal teams.',
+    'Commercial rigor that keeps growth ambitions grounded in operational reality.',
+  ]
+
   return (
-    <div className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">About Olanrewaju Trading Ltd</h2>
-            <p className="text-gray-600 mb-6">
-              With over 15 years of experience in international trade, Olanrewaju Trading Ltd has established
-              itself as a leading force in connecting African markets with global opportunities. Our commitment
-              to excellence, integrity, and innovation drives everything we do.
+    <section className="section-space">
+      <div className="shell">
+        <div className="grid gap-8 lg:grid-cols-[1fr_0.92fr] lg:items-start">
+          <div className="panel p-8 sm:p-10">
+            <span className="eyebrow">Why clients stay with us</span>
+            <h2 className="section-title mt-6">A trade partner that balances polish with hard operational thinking.</h2>
+            <p className="mt-5 text-base leading-8">
+              Olanrewaju Trading Ltd has spent more than a decade shaping supplier relationships, cross-border trade
+              flows, and market development work that helps businesses look credible when the stakes are commercial, not cosmetic.
             </p>
-            <p className="text-gray-600 mb-8">
-              We specialize in agricultural exports, brand promotion services, and industrial goods importation,
-              providing comprehensive solutions that help our clients succeed in competitive global markets.
-            </p>
-            <Link
-              href="/about"
-              className="bg-gray-900 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-800 transition duration-200"
-            >
-              Learn More About Us
+
+            <div className="mt-8 space-y-4">
+              {principles.map((principle) => (
+                <div key={principle} className="panel-soft flex items-start gap-4 p-5">
+                  <span className="mt-1 h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
+                  <p className="text-sm leading-7">{principle}</p>
+                </div>
+              ))}
+            </div>
+
+            <Link href="/about" className="button-primary mt-8">
+              Read the full company story
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-blue-50 p-6 rounded-lg text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
-              <div className="text-gray-600">Years Experience</div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="panel p-6 text-center">
+              <div className="text-sm uppercase tracking-[0.22em] text-[var(--accent-strong)]">Experience</div>
+              <div className="mt-3 text-4xl font-semibold text-[var(--ink)]">15+</div>
+              <p className="mt-3 text-sm leading-6">Years of trade, procurement, and market positioning work.</p>
             </div>
-            <div className="bg-green-50 p-6 rounded-lg text-center">
-              <div className="text-3xl font-bold text-green-600 mb-2">50+</div>
-              <div className="text-gray-600">Countries Served</div>
+            <div className="panel p-6 text-center">
+              <div className="text-sm uppercase tracking-[0.22em] text-[var(--accent-strong)]">Market Reach</div>
+              <div className="mt-3 text-4xl font-semibold text-[var(--ink)]">50+</div>
+              <p className="mt-3 text-sm leading-6">Countries connected through export and sourcing conversations.</p>
             </div>
-            <div className="bg-purple-50 p-6 rounded-lg text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">1000+</div>
-              <div className="text-gray-600">Happy Clients</div>
-            </div>
-            <div className="bg-orange-50 p-6 rounded-lg text-center">
-              <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
-              <div className="text-gray-600">Support</div>
+
+            <div className="panel p-6 sm:col-span-2">
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <div className="text-sm uppercase tracking-[0.22em] text-[var(--accent-strong)]">Coverage</div>
+                  <h3 className="mt-3 text-3xl">Built around the needs of exporters, brand owners, and industrial buyers.</h3>
+                </div>
+                <div className="rounded-full bg-[rgba(27,106,85,0.12)] px-4 py-2 text-sm font-semibold text-[var(--emerald)]">
+                  Advisory + Execution
+                </div>
+              </div>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                <div className="panel-soft p-5">
+                  <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Export Readiness</p>
+                  <p className="mt-3 text-sm leading-7">Commodity packaging, documentation flow, and buyer-facing clarity.</p>
+                </div>
+                <div className="panel-soft p-5">
+                  <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Brand Positioning</p>
+                  <p className="mt-3 text-sm leading-7">Campaign direction, presentation systems, and growth messaging.</p>
+                </div>
+                <div className="panel-soft p-5">
+                  <p className="text-sm uppercase tracking-[0.18em] text-[var(--muted)]">Industrial Supply</p>
+                  <p className="mt-3 text-sm leading-7">Vendor screening, sourcing discipline, and logistics readiness.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

@@ -1,128 +1,85 @@
 export default function Services() {
+  const services = [
+    {
+      title: 'Agricultural exports',
+      description:
+        'We support export-ready agricultural products with a more disciplined path from sourcing to buyer presentation.',
+      points: ['Commodity sourcing support', 'Documentation and quality preparation', 'Buyer communication alignment'],
+    },
+    {
+      title: 'Brand promotion',
+      description:
+        'We help brands translate ambition into campaigns, launch narratives, and positioning systems that feel market-ready.',
+      points: ['Brand messaging architecture', 'Campaign strategy and rollout', 'Growth-focused promotional assets'],
+    },
+    {
+      title: 'Industrial sourcing',
+      description:
+        'We simplify the commercial side of industrial goods importation through supplier diligence and sourcing discipline.',
+      points: ['Vendor screening and negotiation support', 'Import planning and procurement clarity', 'Supply continuity oversight'],
+    },
+  ]
+
+  const process = [
+    'Clarify your market objective, sourcing requirement, or campaign need.',
+    'Map the right commercial route and operational risks.',
+    'Coordinate execution with clear communication across stakeholders.',
+    'Refine the next stage based on results, timing, and market signals.',
+  ]
+
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h1>
-          <p className="text-xl text-gray-600">Comprehensive solutions for your trading and branding needs</p>
-        </div>
+    <div className="section-space">
+      <div className="shell space-y-12">
+        <section className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
+          <div>
+            <span className="eyebrow">Service architecture</span>
+            <h1 className="section-title mt-6">Three premium service tracks designed around commercial trust.</h1>
+          </div>
+          <p className="text-base leading-8">
+            We keep the offer focused: exports, brand promotion, and industrial sourcing. The difference comes from how tightly each service is executed.
+          </p>
+        </section>
 
-        <div className="space-y-12">
-          {/* Agricultural Products Export */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <div className="flex items-center mb-6">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
+        <section className="grid gap-6">
+          {services.map((service, index) => (
+            <article key={service.title} className="panel grid gap-6 p-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+              <div>
+                <p className="text-sm uppercase tracking-[0.22em] text-[var(--accent-strong)]">0{index + 1} / Service Pillar</p>
+                <h2 className="mt-5 text-4xl">{service.title}</h2>
+                <p className="mt-4 text-base leading-8">{service.description}</p>
               </div>
-              <h2 className="text-3xl font-semibold text-gray-900">Exporting of Agricultural Products</h2>
-            </div>
-            <p className="text-gray-600 mb-6">
-              We specialize in sourcing and exporting high-quality agricultural products from trusted African farms
-              to international markets. Our expertise ensures compliance with global standards and timely delivery.
+
+              <div className="grid gap-4 sm:grid-cols-3">
+                {service.points.map((point) => (
+                  <div key={point} className="panel-soft p-5">
+                    <p className="text-sm leading-7 text-[var(--ink)]">{point}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </section>
+
+        <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="panel p-8">
+            <p className="text-sm uppercase tracking-[0.22em] text-[var(--accent-strong)]">Engagement model</p>
+            <h2 className="mt-4 text-4xl">How projects move from conversation to execution</h2>
+            <p className="mt-4 text-base leading-8">
+              We keep engagements practical and commercially readable so you can see where momentum is coming from at each step.
             </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-medium text-gray-900 mb-2">Our Products</h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Cocoa beans and products</li>
-                  <li>• Cashews and nuts</li>
-                  <li>• Coffee and tea</li>
-                  <li>• Cotton and textiles</li>
-                  <li>• Fruits and vegetables</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-medium text-gray-900 mb-2">Our Process</h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Quality sourcing from farmers</li>
-                  <li>• Rigorous quality control</li>
-                  <li>• International certification</li>
-                  <li>• Efficient logistics</li>
-                  <li>• Market intelligence</li>
-                </ul>
-              </div>
-            </div>
           </div>
 
-          {/* Brand Promotion Services */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <div className="flex items-center mb-6">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+          <div className="grid gap-4">
+            {process.map((item, index) => (
+              <div key={item} className="panel-soft flex items-start gap-4 p-5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[rgba(21,37,31,0.08)] text-sm font-semibold text-[var(--ink)]">
+                  0{index + 1}
+                </span>
+                <p className="text-sm leading-7">{item}</p>
               </div>
-              <h2 className="text-3xl font-semibold text-gray-900">Brand Promotion Services</h2>
-            </div>
-            <p className="text-gray-600 mb-6">
-              Elevate your brand with our comprehensive promotion strategies. We combine traditional marketing
-              with digital innovation to create compelling brand narratives that resonate with your target audience.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-medium text-gray-900 mb-2">Our Services</h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Brand strategy development</li>
-                  <li>• Digital marketing campaigns</li>
-                  <li>• Content creation</li>
-                  <li>• Social media management</li>
-                  <li>• Event marketing</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-medium text-gray-900 mb-2">Our Approach</h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Market research and analysis</li>
-                  <li>• Creative concept development</li>
-                  <li>• Multi-channel execution</li>
-                  <li>• Performance tracking</li>
-                  <li>• Continuous optimization</li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
-
-          {/* Industrial Goods Importation */}
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <div className="flex items-center mb-6">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
-              <h2 className="text-3xl font-semibold text-gray-900">Importation of Industrial Goods</h2>
-            </div>
-            <p className="text-gray-600 mb-6">
-              We import a wide range of industrial goods and machinery, ensuring our clients have access to
-              the latest technology and equipment needed for their operations. Our global network guarantees
-              competitive pricing and reliable supply chains.
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-xl font-medium text-gray-900 mb-2">Product Categories</h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Industrial machinery</li>
-                  <li>• Construction equipment</li>
-                  <li>• Electrical components</li>
-                  <li>• Manufacturing tools</li>
-                  <li>• Packaging materials</li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-xl font-medium text-gray-900 mb-2">Our Advantages</h3>
-                <ul className="text-gray-600 space-y-1">
-                  <li>• Competitive pricing</li>
-                  <li>• Quality assurance</li>
-                  <li>• Customs clearance</li>
-                  <li>• After-sales support</li>
-                  <li>• Technical consultation</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </div>
   )
